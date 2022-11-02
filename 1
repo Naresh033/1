@@ -73,7 +73,8 @@ if sd(3)==sd(4)
 temp=0; 
 else
  temp=1; 
-end sd(4)=sd(3);
+end 
+sd(4)=sd(3);
  sd(3)=sd(2); 
 sd(2)=sd(1); 
 sd(1)=temp; 
@@ -86,15 +87,12 @@ stem(PN);
 
 EXP 4 To Study Convolutional Encoder
 CODE
-
-Program
-d=[1 1 0 1 0 0 0 0]; 
-m0=[0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5) d(1,6) d(1,7)]; 
- contents
-m1=[0 0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5) d(1,6)]; 
- contents
-m2=[0 0 0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5)]; 
-m3=[0 0 0 0 d(1,1) d(1,2) d(1,3) d(1,4)]; 
+%Program
+d=[1 1 0 1 0 0 0 0]; % Input sequence
+m0=[0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5) d(1,6) d(1,7)]; % Flip-Flop 1contents
+m1=[0 0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5) d(1,6)]; % Flip-Flop 2contents
+m2=[0 0 0 d(1,1) d(1,2) d(1,3) d(1,4) d(1,5)]; % Flip-Flop 3 contents
+m3=[0 0 0 0 d(1,1) d(1,2) d(1,3) d(1,4)]; % Flip-Flop 4 contents
 x1=xor(xor(m3,m1),d)
 x2=xor(xor(xor(d,m0),m2),m3)
 x3=xor(xor(xor(xor(d,m0),m1),m2),m3)
@@ -104,7 +102,6 @@ op=[];
 for i=1:1:l
 op=[op x1(i) x2(i) x3(i)];
 end
-op
 
 EXP 5 To study 4x4 MIMO system, a 1x4 SIMO system, a 4x1 MISO system and a SISO system.
 CODE
