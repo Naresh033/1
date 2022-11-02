@@ -162,3 +162,70 @@ legend('4x4 MIMO', '1x4 SIMO', '4x1 MISO', '1x1
  SIMO',"Location","northwest")
 grid
 hold off
+
+EXP 6  To Study Direct sequence spread spectrum
+CODE
+clc
+PNbit_stream = round(rand(1,32));
+input_signal=[0 1 0 0 1 0 1 1];
+PNbit_stream;
+j=1;
+for i=1:1:8
+if j<32
+for k=j:1:j+3
+a(k)=xor(PNbit_stream(k),input_signal(i));
+end
+j=j+4;
+end
+end
+l=length(a);
+for i=1:1:l
+b(i)=xor(PNbit_stream(i),a(i));
+end
+j=1;
+for k=1:1:8
+if j<32
+c(k)=b(j);
+j=j+4;
+end
+end
+figure(1)
+stem(PNbit_stream)
+title('PNbit_stream')
+figure(2)
+stem(input_signal)
+title('input_signal')
+figure(3)
+stem(a)
+title('DSSS')
+figure(4)
+stem(b)
+title('signal after xor at receiver')
+figure(5)
+stem(c)
+title('received data')
+
+EXP 7 To Study Signal to Interference ratio for mobile station communication.
+CODE
+clc;
+clear all;
+close all;
+SIDB=0;
+n=4;
+I0=6;
+while SIDB<=15;
+N=7;
+q1=(3*N);
+Q=sqrt(q1);
+SI=(Q^n)/I0;
+SIDB=10*log10(SI);
+disp(SIDB);
+disp('VAlUE N IS ');
+disp(N)
+if SIDB<=15
+disp('VAlUE N IS NOT ACCEPTABLE')
+else
+disp('VALUE OF N IS ACCEPTABLE');
+disp('ACCEPTABLE')
+end
+end
